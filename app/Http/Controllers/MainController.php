@@ -79,47 +79,7 @@ class MainController extends Controller
     }
 
     public function test() {
-        $filename = 'test.txt';
-        $filePath = '../storage/app/public/' . $filename;
-
-        $curArray = array();
-        if (file_exists($filePath)) {
-            $curData = file_get_contents($filePath);
-            $curArray = json_decode($curData, true);    
-        }
-
-        //現在時刻
-        $curDate = date('Y-m-d-H-i');
-        $lastDate = date('Y-m-d-H-i', strtotime("-1 minute"));
-
-        $lastData = null;
-        if (array_key_exists($lastDate, $curArray)) {
-            $lastData = $curArray[$lastDate];
-        }
-
-        $contents = array();
-
-        if ($lastData == null) {
-            //前の分がない場合
-            $lastData = array(
-                "user_id" => "n" . $lastDate,
-                "user_name" => "n" . $lastDate,
-                "title" => "n" . $lastDate,
-                "icon" => "n" . $lastDate,  
-            );
-        }
-        //前の分がある場合            
-        $contents = $contents + array($lastDate => $lastData);
-        
-        $curData = array(
-            "user_id" => "a" . $curDate,
-            "user_name" => "a" . $curDate,
-            "title" => "a" . $curDate,
-            "icon" => "a" . $curDate,  
-        );
-        $contents = $contents + array($curDate => $curData);
-        file_put_contents($filePath, json_encode($contents));
-
+        dd("OK");
     }
 
     public function updateStreams(): JsonResponse {
