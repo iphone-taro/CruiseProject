@@ -91,12 +91,11 @@ class Schedule {
             }
 
             if (count($list) != 0) {
-                $loopFlg = true;
-
                 if ($retArray["pagination"] != null) {
-                    $page = $retArray["pagination"]["cursor"];
-                } else {
-                    $loopFlg = false;
+                    if ($retArray["pagination"]["cursor"] != null) {
+                        $page = $retArray["pagination"]["cursor"];
+                        $loopFlg = true;
+                    }
                 }
             }
             $count++;
@@ -220,15 +219,12 @@ class Schedule {
                 array_push($gameList, $rowData);
             }
 
-            $page = $retArray["pagination"]["cursor"];
-
             if (count($list) != 0) {
-                $loopFlg = true;
-
                 if ($retArray["pagination"] != null) {
-                    $page = $retArray["pagination"]["cursor"];
-                } else {
-                    $loopFlg = false;
+                    if ($retArray["pagination"]["cursor"] != null) {
+                        $page = $retArray["pagination"]["cursor"];
+                        $loopFlg = true;
+                    }
                 }
             }
         }
