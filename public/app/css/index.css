@@ -3,6 +3,17 @@
     border-color: #ffffff;
 } */
 
+a {
+    text-decoration:none; 
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}
+
 .fontBase {
     color : #ffffff
 }
