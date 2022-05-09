@@ -205,6 +205,7 @@ class Schedule {
             $contents = $contents + array("view" => $view);
             $contents = $contents + array("gameName" => $gameId . " " . count($stList));
             $contents = $contents + array($nextDate => $nextData);
+            $contents = $contents + array('allList' => $stList);
             file_put_contents($filePath, json_encode($contents));
         }
         // $flg = DB::table('streams')->upsert($insertList, ['game_id', 'disp_minute'], ['user_id', 'user_name', 'title', 'view_count', 'icon', 'updated_at']);
