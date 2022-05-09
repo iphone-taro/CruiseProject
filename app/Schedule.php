@@ -18,6 +18,19 @@ class Schedule {
         $loopFlg = true;
         $count = 0;
 
+        //アクティブ視聴者取得
+        $now = date("Y/m/d H:i:00", strtotime("-5 minute"));
+        $activeList = DB::select('
+            SELECT
+             game_id, 
+             COUNT(user_id) as view
+            FROM
+             accesses 
+            WHERE
+             updated_at > "' . $now . '"
+            GROUP BY
+             game_id');
+             
         $now = strtotime("now");
         $retArray = array();
         while ($loopFlg) {
@@ -78,9 +91,18 @@ class Schedule {
                             break;
                         }
                     }
+                    
                     if ($flg) {
                         //データが存在しない場合
-                        array_push($gameList, array('id' => $gameId, 'order' => 1, 'active' => true, 'icon' => "", 'name' => $row["game_name"]));
+                        //アクティブ視聴者
+                        $view = 0;
+                        for ($i=0; $i < count($activeList); $i++) {
+                            if ($gameId == $activeList[$i]->game_id) {
+                                $view = $activeList[$i]->view;
+                                break;
+                            }
+                        }
+                        array_push($gameList, array('id' => $gameId, 'order' => 1, 'active' => true, 'icon' => "", 'view' => $view, 'name' => $row["game_name"]));
                     } else {
                         //データが存在する場合
                         $order = $gameList[$i]["order"];
@@ -103,7 +125,7 @@ class Schedule {
         echo 'AAA' . date('Y/m/d H:i:s');
         //ゲーム一覧情報を更新
         $flg = DB::table('games')->update(['active' => false]);
-        $flg = DB::table('games')->upsert($gameList, ['id'], ['order', 'active']);
+        $flg = DB::table('games')->upsert($gameList, ['id'], ['order', 'active', 'view']);
         echo 'BBB' . date('Y/m/d H:i:s');
 
         //スケジュール登録
@@ -173,6 +195,14 @@ class Schedule {
                 "view_count" => $stData2["view_count"],
                 "icon" => $stData2["icon"],
             );
+            $view = 0;
+            for ($i=0; $i < count($activeList); $i++) { 
+                if ($gameId == $activeList[$i]->game_id) {
+                    $view = $activeList[$i]->view;
+                    break;
+                }
+            }
+            $contents = $contents + array("view" => $view);
             $contents = $contents + array("gameName" => $gameId . " " . count($stList));
             $contents = $contents + array($nextDate => $nextData);
             file_put_contents($filePath, json_encode($contents));

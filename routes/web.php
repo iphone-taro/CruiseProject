@@ -15,7 +15,7 @@ use App\Http\Controllers\MainController;
 */
 
 Route::get('/api/getGames', [MainController::class, 'getGames']);
-Route::get('/api/getStreams', [MainController::class, 'getStreams']);
+Route::post('/api/getStreams', [MainController::class, 'getStreams']);
 Route::get('/api/updateGames', [MainController::class, 'updateGames']);
 Route::get('/api/updateStreams', [MainController::class, 'updateStreams']);
 Route::get('/api/test', [MainController::class, 'test']);
