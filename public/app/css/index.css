@@ -48,10 +48,6 @@ body * {
     display:none;
 }
 
-.dispSpB {
-    display:block;
-}
-
 .dispPcI {
     display:none;
 }
@@ -69,8 +65,9 @@ a {
 }
 
 .viewCount {
+    display:block;
     background:#323234;
-    /* padding:0.35em; */
+    padding:0.2em 0.5em;
     border-radius:2px;
     color:#C2C2C2
 }
@@ -104,7 +101,7 @@ a {
 }
 
 .viewTitle {
-    font-size:1.2rem;
+    font-size:1.3rem;
 }
 
 .iframe {
@@ -123,7 +120,7 @@ a {
     width: 40vw;
 }
 
-.gameTitle {
+.title {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -133,9 +130,17 @@ a {
     width:100%;
 }
 
+.mode1Btn {
+    width : 100%;
+}
+
 @media screen and (min-width : 576px) {
     .modeBtn {
         width:240px;
+    }
+
+    .mode1Btn {
+        width:90%;
     }
 
     .gameIcon {
@@ -164,13 +169,12 @@ a {
     .dispPcB {
         display:block;
     }
-    .dispSpB {
-        display:none;
-    }
         
     .iframe {
-        width : 90%;
-        height : 37vw;
+        /* width : 90%;
+        height : 37vw; */
+        width : 100%;
+        height : 41vw;
     }
 
     .ad_sp {
@@ -185,28 +189,29 @@ a {
     .modeBtn {
         width:360px;
     }
+
+    .mode1Btn {
+        width:260px;
+    }
 }
 
 @media screen and (min-width : 992px) {
     .modeBtn {
         width:440px;
     }
+
+    .mode1Btn {
+        width:300px;
+    }
 }
 
-/* @media screen and (min-width : 1200px) {
-    .baseWidth {
-        width: 90%
+@media screen and (min-width : 1400px) {
+    .iframe {
+        width : 910px;
+        height: 555px;
     }
 
-    .iframe {
-        width : 70%;
-        height : 33vw;
+    .baseWidth {
+        width : 1120px;
     }
-    
-    .ad_sp {
-        display:none;
-    }
-    .ad {
-        display:block;
-    }
-} */
+}
