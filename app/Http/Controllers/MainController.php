@@ -454,9 +454,8 @@ class MainController extends Controller
             }
             $curArray = array();
             //ファイルが存在するか
-            echo $filename;
+
             if (file_exists($filePath)) {
-                echo 'in';
                 $curData = file_get_contents($filePath);
                 $curArray = json_decode($curData, true);
 
@@ -467,7 +466,10 @@ class MainController extends Controller
                     }
                 }
             }
-    
+            if ($curArray == null) {
+                echo $filename;
+                echo file_get_contents($filePath);
+            }            
             //現在時刻
             $curDate = date('Y-m-d-H-i');
             $nextDate = date('Y-m-d-H-i', strtotime("1 minute"));
