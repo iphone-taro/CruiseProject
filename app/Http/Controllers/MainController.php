@@ -320,7 +320,7 @@ class MainController extends Controller
 
     public function test() {
         $result = glob('../storage/app/public/*');
-        
-        dd($result);
+        unlink($result[0]);
+        dd($result[0]);
     }
 }
