@@ -223,11 +223,11 @@ class Schedule {
         }
         // $flg = DB::table('streams')->upsert($insertList, ['game_id', 'disp_minute'], ['user_id', 'user_name', 'title', 'view_count', 'icon', 'updated_at']);
         echo 'delete' . count($fileList);
-        for ($i=0; $i < count($fileList); $i++) { 
-            if ($fileList[$i] != './storage/app/public/.htaccess' && $fileList[$i] != './storage/app/public/.gitignore') {
-                unlink($fileList[$i]);
-            }
-        }
+        // for ($i=0; $i < count($fileList); $i++) { 
+        //     if ($fileList[$i] != './storage/app/public/.htaccess' && $fileList[$i] != './storage/app/public/.gitignore') {
+        //         unlink($fileList[$i]);
+        //     }
+        // }
 
         echo 'CCC' . date('Y/m/d H:i:s');
 
