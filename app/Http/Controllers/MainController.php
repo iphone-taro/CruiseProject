@@ -472,65 +472,70 @@ class MainController extends Controller
     
             $curData = null;
             $curId = "";
-            if (array_key_exists($curDate, $curArray)) {
-                //前回のデータを取得
-                $curData = $curArray[$curDate];
-                $curId = $curArray[$curDate]["user_id"];
-            } else {
-                //前の分がない場合
-                
-                $random = mt_rand(0, count($stList) - 1);
-                $stData1 = $stList[intVal($random)];
 
-                $curData = array(
-                    "user_id" => $stData1["user_id"],
-                    "user_name" => $stData1["user_name"],
-                    "title" => $stData1["title"],
-                    "view_count" => $stData1["view_count"],
-                    "icon" => $stData1["icon"],
-                );
-                $curId = $stData1["user_id"];
+            if ($curArray == null) {
+                echo 'ERR ' . $filePath;
             }
-                
-            $contents = array();         
-            $contents = $contents + array($curDate => $curData);
-            
-            $stIndex = -1;
-            if (count($stList) == 1) {
-                $stIndex = 0;
-            } else {
-                while ($stIndex == -1) {
-                    $stIndex = mt_rand(0, count($stList) - 1);
-                    $id = $stList[$stIndex]["user_id"];
-
-                    if ($id == $curId) {
-                        $stIndex = -1;
-                    }
-                    
-                }
-            }
-            $stData2 = $stList[intVal($stIndex)];
-
-            $nextData = array(
-                "user_id" => $stData2["user_id"],
-                "user_name" => $stData2["user_name"],
-                "title" => $stData2["title"],
-                "view_count" => $stData2["view_count"],
-                "icon" => $stData2["icon"],
-            );
-            $view = 0;
-            for ($i=0; $i < count($activeList); $i++) { 
-                if ($gameId == $activeList[$i]->game_id) {
-                    $view = $activeList[$i]->view;
-                    break;
-                }
-            }
-            $contents = $contents + array("view" => $view);
-            $contents = $contents + array("gameName" => $gameId . " " . count($stList));
-            $contents = $contents + array($nextDate => $nextData);
-            $contents = $contents + array('allList' => $stList);
-            // file_put_contents($filePath, json_encode($contents));
         }
+        //     if (array_key_exists($curDate, $curArray)) {
+        //         //前回のデータを取得
+        //         $curData = $curArray[$curDate];
+        //         $curId = $curArray[$curDate]["user_id"];
+        //     } else {
+        //         //前の分がない場合
+                
+        //         $random = mt_rand(0, count($stList) - 1);
+        //         $stData1 = $stList[intVal($random)];
+
+        //         $curData = array(
+        //             "user_id" => $stData1["user_id"],
+        //             "user_name" => $stData1["user_name"],
+        //             "title" => $stData1["title"],
+        //             "view_count" => $stData1["view_count"],
+        //             "icon" => $stData1["icon"],
+        //         );
+        //         $curId = $stData1["user_id"];
+        //     }
+                
+        //     $contents = array();         
+        //     $contents = $contents + array($curDate => $curData);
+            
+        //     $stIndex = -1;
+        //     if (count($stList) == 1) {
+        //         $stIndex = 0;
+        //     } else {
+        //         while ($stIndex == -1) {
+        //             $stIndex = mt_rand(0, count($stList) - 1);
+        //             $id = $stList[$stIndex]["user_id"];
+
+        //             if ($id == $curId) {
+        //                 $stIndex = -1;
+        //             }
+                    
+        //         }
+        //     }
+        //     $stData2 = $stList[intVal($stIndex)];
+
+        //     $nextData = array(
+        //         "user_id" => $stData2["user_id"],
+        //         "user_name" => $stData2["user_name"],
+        //         "title" => $stData2["title"],
+        //         "view_count" => $stData2["view_count"],
+        //         "icon" => $stData2["icon"],
+        //     );
+        //     $view = 0;
+        //     for ($i=0; $i < count($activeList); $i++) { 
+        //         if ($gameId == $activeList[$i]->game_id) {
+        //             $view = $activeList[$i]->view;
+        //             break;
+        //         }
+        //     }
+        //     $contents = $contents + array("view" => $view);
+        //     $contents = $contents + array("gameName" => $gameId . " " . count($stList));
+        //     $contents = $contents + array($nextDate => $nextData);
+        //     $contents = $contents + array('allList' => $stList);
+        //     // file_put_contents($filePath, json_encode($contents));
+        // }
         // $flg = DB::table('streams')->upsert($insertList, ['game_id', 'disp_minute'], ['user_id', 'user_name', 'title', 'view_count', 'icon', 'updated_at']);
         echo 'delete' . count($fileList);
         // for ($i=0; $i < count($fileList); $i++) { 
