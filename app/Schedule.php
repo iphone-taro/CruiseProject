@@ -150,12 +150,12 @@ class Schedule {
 
                 if ($curArray == null) {
                     $curArray = array();
-                }
-                
-                for ($i=0; $i < count($fileList); $i++) { 
-                    if ($fileList[$i] == $filePath) {
-                        array_splice($fileList, $i, 1);
-                        break;
+                } else {
+                    for ($i=0; $i < count($fileList); $i++) { 
+                        if ($fileList[$i] == $filePath) {
+                            array_splice($fileList, $i, 1);
+                            break;
+                        }
                     }
                 }
             }
