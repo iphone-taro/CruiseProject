@@ -315,7 +315,12 @@ class MainController extends Controller
         // dd($gameList);
     }
     public function test2() {
-
+        $fileList = glob('../storage/app/public/*');
+        for ($i=0; $i < count($fileList); $i++) { 
+            if ($fileList[$i] != '../storage/app/public/.htaccess' && $fileList[$i] != '../storage/app/public/.gitignore') {
+                unlink($fileList[$i]);
+            }
+        }
     }
 
     public function test() {
