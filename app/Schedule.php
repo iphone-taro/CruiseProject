@@ -148,6 +148,10 @@ class Schedule {
                 $curData = file_get_contents($filePath);
                 $curArray = json_decode($curData, true);
 
+                if ($curArray == null) {
+                    $curArray = array();
+                }
+                
                 for ($i=0; $i < count($fileList); $i++) { 
                     if ($fileList[$i] == $filePath) {
                         array_splice($fileList, $i, 1);
