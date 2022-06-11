@@ -434,8 +434,8 @@ class MainController extends Controller
         }
         echo 'AAA' . date('Y/m/d H:i:s');
         //ゲーム一覧情報を更新
-        $flg = DB::table('games')->update(['active' => false]);
-        $flg = DB::table('games')->upsert($gameList, ['id'], ['order', 'active', 'view']);
+        // $flg = DB::table('games')->update(['active' => false]);
+        // $flg = DB::table('games')->upsert($gameList, ['id'], ['order', 'active', 'view']);
         echo 'BBB' . date('Y/m/d H:i:s');
 
         $fileList = glob('../storage/app/public/*');
