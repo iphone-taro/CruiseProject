@@ -128,6 +128,9 @@ class Schedule {
         $flg = DB::table('games')->upsert($gameList, ['id'], ['order', 'active', 'view']);
         echo 'BBB' . date('Y/m/d H:i:s');
 
+        $fileList = glob('./storage/app/public/*');
+        echo 'file' . count($fileList);
+
         //スケジュール登録
         $insertList = array();
         foreach ($streamList as  $gameId => $stList) {
@@ -135,12 +138,22 @@ class Schedule {
             //ファイルデータ取得
             $filename = $gameId . '.txt';
             $filePath = './storage/app/public/' . $filename;
-    
+
+            if ($gameId == '26936') {
+                echo 'music' . count($stList);
+            }
             $curArray = array();
             //ファイルが存在するか
             if (file_exists($filePath)) {
                 $curData = file_get_contents($filePath);
-                $curArray = json_decode($curData, true);    
+                $curArray = json_decode($curData, true);
+
+                for ($i=0; $i < count($fileList); $i++) { 
+                    if ($fileList[$i] == $filePath) {
+                        array_splice($fileList, $i, 1);
+                        break;
+                    }
+                }
             }
     
             //現在時刻
@@ -209,6 +222,12 @@ class Schedule {
             file_put_contents($filePath, json_encode($contents));
         }
         // $flg = DB::table('streams')->upsert($insertList, ['game_id', 'disp_minute'], ['user_id', 'user_name', 'title', 'view_count', 'icon', 'updated_at']);
+        echo 'delete' . count($fileList);
+        for ($i=0; $i < count($fileList); $i++) { 
+            if ($fileList[$i] != './storage/app/public/.htaccess' && $fileList[$i] != './storage/app/public/.gitignore') {
+                unlink($fileList[$i]);
+            }
+        }
 
         echo 'CCC' . date('Y/m/d H:i:s');
 
@@ -263,7 +282,7 @@ class Schedule {
 
         //ゲーム一覧を更新
         DB::table('games')->upsert($gameList, ['id'], ['name', 'icon']);
-
+        DB::table('games')->where('updated_at', '<', date('Y-m-d-H-i', strtotime("-5 minute")))->delete();
         // dd($gameList);
         
         echo '終了' . date('Y/m/d H:i:s');

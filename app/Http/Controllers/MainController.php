@@ -319,6 +319,10 @@ class MainController extends Controller
     }
 
     public function test() {
-
+        $result = glob('../storage/app/public/*');
+        for ($i=0; $i < count($result); $i++) { 
+            $result[$i] = str_replace('../storage/app/public/', '', $result[$i]);
+        }
+        dd($result);
     }
 }
