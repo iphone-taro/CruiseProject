@@ -320,4 +320,8 @@ class MainController extends Controller
     public function test() {
 
     }
+
+    public function test3() {
+        return view('spa.app')->with('test', 'okokok');
+    }
 }
