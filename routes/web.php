@@ -22,5 +22,5 @@ Route::get('/api/test', [MainController::class, 'test']);
 Route::get('/api/test2', [MainController::class, 'test2']);
 
 Route::get('/{any}', function () {
-    return view('spa.app');
+    return view('spa.app')->with('test', "btn_showmore");
 })->where('any', '.*');
