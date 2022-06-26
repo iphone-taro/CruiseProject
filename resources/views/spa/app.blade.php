@@ -17,7 +17,7 @@
     <meta name="twitter:site" content="iphonetaro_live">
     <meta name="twitter:title" content="テストタイトルです">
     <meta name="twitter:description" content="テスト説明文です">
-    <meta name="twitter:image" content="'https://iphone-taro.sakura.ne.jp/OneTwi/app/img/' + {{ test }} + '.png'">
+    <meta name="twitter:image" content="'https://iphone-taro.sakura.ne.jp/OneTwi/app/img/' + 'btn_showmore' + '.png'">
     <link href="app/css/app.5c9713c3.css" rel="preload" as="style">
     <link href="app/js/app.6a9e66ca.js" rel="preload" as="script">
     <link href="app/js/chunk-vendors.312bd8c4.js" rel="preload" as="script">
