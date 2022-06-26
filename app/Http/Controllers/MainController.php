@@ -322,6 +322,6 @@ class MainController extends Controller
     }
 
     public function test3() {
-        return view('spa.app')->with('test', 'okokok');
+        return view('spa.app')->with('test', 'icon_logo');
     }
 }
